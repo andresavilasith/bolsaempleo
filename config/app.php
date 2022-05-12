@@ -196,6 +196,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         //JWT
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        App\Providers\DefaultDataTestProvider::class,
 
     ],
 
@@ -212,6 +213,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'DefaultDataTest' => App\Helpers\DefaultDataTest::class,
+
     ])->toArray(),
 
 ];

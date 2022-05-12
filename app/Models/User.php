@@ -19,6 +19,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
+        'document_id',
         'name',
         'email',
         'password',
@@ -66,4 +67,15 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = bcrypt($value);
      }
+
+     public function document()
+    {
+        return $this->belongsTo(Document::class, 'document_id');
+    }
+
+    public function job_offers()
+    {
+        return $this->belongsToMany(JobOffer::class)->withTimestamps();
+    }
+
 }
