@@ -29,27 +29,23 @@ php artisan key:generate
 ```
 php artisan jwt:secret
 ``````
+
 6. Generar la migracion y carga de registros
 ```
 php artisan migrate --seed
 ``````
-
-7. Generar la migracion y carga de registros
-```
-php artisan migrate --seed
-``````
-8. Ejecutar el proyecto
+7. Ejecutar el proyecto
 ```
 php artisan serve
 ``````
-9. Entrar a [http://127.0.0.1:8000/api/auth/login](http://127.0.0.1:8000/api/auth/login) y entrar con:
+8. Entrar a [http://127.0.0.1:8000/api/auth/login](http://127.0.0.1:8000/api/auth/login) y entrar con:
 ```
 email: user@user.com
 ``````
 ```
 password: 1234
 ``````
-10. Ejecución de tests - TDD
+9. Ejecución de tests - TDD
 ```
 php artisan test
 ``````
