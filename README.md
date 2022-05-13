@@ -4,11 +4,6 @@
 
 # API Rest de bolsa de empleo en Laravel con TDD
 
-## Enlace a Heroku
-
-
-## [API Rest in Heroku](https://frozen-garden-70878.herokuapp.com/) 
-
 ## Instalación
 
 1. Clonar el repositorio en el directorio de tu eleccion
