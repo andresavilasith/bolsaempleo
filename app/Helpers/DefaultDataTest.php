@@ -42,7 +42,7 @@ class DefaultDataTest
         
 
 
-        JobOffer::factory()->times(1999)->create();
+        JobOffer::factory()->times(19)->create();
 
         $jobs_offers=JobOffer::where('state','activo')->get();
 

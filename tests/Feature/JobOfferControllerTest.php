@@ -77,7 +77,7 @@ class JobOfferControllerTest extends TestCase
 
         $response->assertOk();
 
-        $this->assertCount(2001, JobOffer::all());
+        $this->assertCount(21, JobOffer::all());
 
         $job_offer = JobOffer::latest('id')->first();
 
@@ -117,7 +117,7 @@ class JobOfferControllerTest extends TestCase
 
         $response->assertOk();
 
-        $this->assertCount(2000, JobOffer::all());
+        $this->assertCount(20, JobOffer::all());
 
         $job_offer = $job_offer->fresh();
 
@@ -149,7 +149,7 @@ class JobOfferControllerTest extends TestCase
 
         $job_offers = JobOffer::all();
 
-        $this->assertCount(1999, JobOffer::all());
+        $this->assertCount(19, JobOffer::all());
 
         $response->assertJsonStructure(['job_offers', 'status', 'message'])->assertStatus(200);
     }
