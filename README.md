@@ -7,7 +7,7 @@
 ## Enlace a Heroku
 
 
-[API Rest in Heroku](https://frozen-garden-70878.herokuapp.com/) 
+## [API Rest in Heroku](https://frozen-garden-70878.herokuapp.com/) 
 
 ## Instalación
 
@@ -27,7 +27,7 @@ php artisan key:generate
 ```
 5. Generar la clave secreta de JWT
 ```
-php artisan key:generate
+php artisan jwt:secret
 ``````
 6. Generar la migracion y carga de registros
 ```
