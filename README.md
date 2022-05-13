@@ -56,7 +56,7 @@ php artisan test
 
 |  Petición  |      URL      |  Descripción |
 |----------|:-------------:|------:|
-|   POST    |  api/auth/register | Registrar usuario |
+|   POST    |  api/auth/register | Registrar usuario - Se elige un tipo de docuemnto con las opciones que se obtiene del endpoint: GET - api/document |
 |   POST    |  api/auth/login | Iniciar Sesion |
 |   POST    |  api/auth/logout | Cerrar Sesion |
 |   POST    |  api/auth/refresh | Refrescar token |
