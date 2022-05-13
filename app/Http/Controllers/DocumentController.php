@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Document\DocumentStoreRequest;
+use App\Http\Requests\Document\DocumentUpdateRequest;
 use App\Models\Document;
 use Illuminate\Http\Request;
 
@@ -33,7 +35,7 @@ class DocumentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DocumentStoreRequest $request)
     {
         $document = Document::create($request->all());
 
@@ -65,7 +67,7 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Document $document)
+    public function update(DocumentUpdateRequest $request, Document $document)
     {
         $document->update($request->all());
 

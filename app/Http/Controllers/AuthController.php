@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AuthRequest;
+use App\Http\Requests\Auth\AuthRegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -82,7 +82,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(AuthRequest $request)
+    public function register(AuthRegisterRequest $request)
     {
         $user = User::create($request->all());
 

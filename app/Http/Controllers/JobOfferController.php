@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobOffer\JobOfferStoreRequest;
+use App\Http\Requests\JobOffer\JobOfferUpdateRequest;
 use App\Models\JobOffer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,7 +36,7 @@ class JobOfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JobOfferStoreRequest $request)
     {
         $job_offer = JobOffer::create($request->all());
 
@@ -66,7 +68,7 @@ class JobOfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, JobOffer $job_offer)
+    public function update(JobOfferUpdateRequest $request, JobOffer $job_offer)
     {
         $job_offer->update($request->all());
 
