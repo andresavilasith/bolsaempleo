@@ -15,7 +15,7 @@
 ```
 git clone https://github.com/andresavilasith/bolsaempleo.git
 ```
-2. Instalar composer  
+2. Ejecutar composer  
 ```
 composer update
 ```
