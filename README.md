@@ -1,64 +1,85 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="500"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# API Rest de bolsa de empleo en Laravel con TDD
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalación
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. Clonar el repositorio en el directorio de tu eleccion
+```
+git clone https://github.com/andresavilasith/bolsaempleo.git
+```
+2. Instalar composer  
+```
+composer update
+```
+3. Cambiar el nombre del archivo **.env.example** _(Si esta como **env.example**)_ a **.env**
 
-## Learning Laravel
+4. Generar una nueva llave de laravel con el comando:
+```
+php artisan key:generate
+```
+5. Generar la clave secreta de JWT
+```
+php artisan key:generate
+``````
+6. Generar la migracion y carga de registros
+```
+php artisan migrate --seed
+``````
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+7. Generar la migracion y carga de registros
+```
+php artisan migrate --seed
+``````
+8. Ejecutar el proyecto
+```
+php artisan serve
+``````
+9. Entrar a [http://127.0.0.1:8000/api/auth/login](http://127.0.0.1:8000/api/auth/login) y entrar con:
+```
+email: user@user.com
+``````
+```
+password: 1234
+``````
+10. Ejecución de tests - TDD
+```
+php artisan test
+``````
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Peticiones de Usuarios
 
-### Premium Partners
+|  Petición  |      URL      |  Descripción |
+|----------|:-------------:|------:|
+|   POST    |  api/auth/register | Registrar usuario |
+|   POST    |  api/auth/login | Iniciar Sesion |
+|   POST    |  api/auth/logout | Cerrar Sesion |
+|   POST    |  api/auth/refresh | Refrescar token |
+|   POST    |  api/auth/user | Datos de usuario actual en la sesión |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Peticiones de Documento
 
-## Contributing
+|  Petición  |      URL      |  Descripción |
+|----------|:-------------:|------:|
+|   GET     |  api/document | Listado de todos los documentos registrados (Se usa este endpoint para que en el registro de nuevos usuarios se pueda elegir un tipo de documento) |
+|   POST    |  api/document | Guardar un nuevo documento |
+|   GET     |  api/document/{document} | Obtener un documento de acuerdo a su id |
+|   PUT     |  api/document/{document} | Actualizar un documento de acuerdo a su id |
+|   DELETE     |  api/document/{document} | Eliminar un documento de acuerdo a su id |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Ofertas de Trabajo 
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+|  Petición  |      URL      |  Descripción |
+|----------|:-------------:|------:|
+|   GET    |  api/job_offer | Listado de ofertas de trabajo |
+|   POST   |  api/job_offer | Guardar una nueva oferta de trabajo |
+|   GET    |  api/job_offer/{job_offer} | Obtener como resultado una oferta de trabajo de acuerdo a su id  |
+|   PUT    |  api/job_offer/{job_offer} | Actualizar una oferta de trabajo de acuerdo a su id  |
+|   DELETE    |  api/job_offer/{job_offer} | Eliminar una oferta de trabajo de acuerdo a su id  |
+|   GET    |  api/user/job_offer | Obtener todas las ofertas de trabajo con usuarios asociados  |
+|   GET    |  api/user/job_offer/create | Obtener todas las ofertas de trabajo para la que se listen al momento de aplicar a una oferta  |
+|   POST    |  api/user/job_offer/apply | Aplicar a una oferta de trabajo  |
