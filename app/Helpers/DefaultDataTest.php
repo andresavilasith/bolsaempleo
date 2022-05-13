@@ -27,8 +27,31 @@ class DefaultDataTest
             'email' => 'user@user.com',
             'password' => '1234'
         ]);
+        User::factory()->create([
+            'document_id' => 2,
+            'name' => 'user2',
+            'email' => 'user2@user.com',
+            'password' => '1234'
+        ]);
+        JobOffer::factory()->create([
+            'name' => 'Laravel developer',
+            'state' => 'activo',
+        ]);
+
+        $user=User::first();
+        
 
 
-        JobOffer::factory()->times(20)->create();
+        JobOffer::factory()->times(19)->create();
+
+        $jobs_offers=JobOffer::where('state','activo')->get();
+
+        $users_jobs_all = [];
+
+        foreach ($jobs_offers as $job_offer) {
+            $users_jobs_all[] = $job_offer->id;
+        }
+        
+        $user->job_offers()->sync($users_jobs_all);
     }
 }

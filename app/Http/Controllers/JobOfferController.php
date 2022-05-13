@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobOffer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobOfferController extends Controller
@@ -92,6 +93,62 @@ class JobOfferController extends Controller
             'job_offers' => $job_offers,
             'status' => 'success',
             'message' => 'Job offer deleted successfully'
+        ]);
+    }
+
+    public function job_offers_users()
+    {
+        $job_offers_with_users = JobOffer::with('users')->get();
+
+        return response()->json([
+            'job_offers_with_users' => $job_offers_with_users,
+            'status' => 'success',
+        ]);
+    }
+
+    public function create_apply_to_job_offer()
+    {
+
+        $jobs_offers = JobOffer::where('state', 'activo')->get();
+
+
+        return response()->json([
+            'jobs_offers' => $jobs_offers,
+            'status' => 'success',
+        ]);
+    }
+
+    public function apply_to_job_offer(Request $request)
+    {
+        $user_id = auth()->user()->id;
+
+        $user = User::find($user_id);
+        $job_offer = JobOffer::find($request->get('joboffer'));
+
+        $users_applied = [];
+
+        foreach ($job_offer->users as $user) {
+            $users_applied[] = $user->id;
+        }
+
+        if (!in_array($user_id, $users_applied)) {
+
+
+            if ($request->get('joboffer')) {
+                $user->job_offers()->sync($request->get('joboffer'));
+
+                $job_offer = JobOffer::find($request->get('joboffer'));
+            }
+
+            return response()->json([
+                'message' => 'You apply successfully to ' . $job_offer->name,
+                'status' => 'success'
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'You already apply to ' . $job_offer->name,
+            'status' => 'error'
         ]);
     }
 }

@@ -16,11 +16,11 @@ class JobOfferFactory extends Factory
      */
     public function definition()
     {
-        $response = array('activo', 'inactivo');
-        $active_inactive = array_rand($response);
+        $status = array('activo', 'inactivo');
+        $active_inactive = array_rand($status);
         return [
             'name' => $this->faker->unique()->name,
-            'state' => $active_inactive
+            'state' => $status[$active_inactive]
         ];
     }
 }

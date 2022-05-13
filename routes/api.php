@@ -49,5 +49,11 @@ Route::group([
 ], function () {
 
     Route::resource('job_offer', JobOfferController::class,['except'=>['create','edit']])->names('job_offer');
+    
+    Route::get('user/job_offer', [JobOfferController::class, 'job_offers_users']);
+    
+    Route::get('user/job_offer/create', [JobOfferController::class, 'create_apply_to_job_offer']);
+    
+    Route::post('user/job_offer/apply', [JobOfferController::class, 'apply_to_job_offer']);
 
 });

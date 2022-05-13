@@ -45,7 +45,7 @@ class JobOfferControllerTest extends TestCase
 
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
-        ])->get('/api/job_offer/' . $job_offer->id );
+        ])->get('/api/job_offer/' . $job_offer->id);
 
         $response->assertOk();
 
@@ -111,7 +111,7 @@ class JobOfferControllerTest extends TestCase
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $token,
         ])->put('/api/job_offer/' . $job_offer->id, [
-            'name' => $name, 
+            'name' => $name,
             'state' => $state
         ]);
 
@@ -152,5 +152,73 @@ class JobOfferControllerTest extends TestCase
         $this->assertCount(19, JobOffer::all());
 
         $response->assertJsonStructure(['job_offers', 'status', 'message'])->assertStatus(200);
+    }
+
+    /** @test */
+    public function test_get_job_offers_with_users()
+    {
+        $this->withoutExceptionHandling();
+
+        DefaultDataTest::data_seed();
+
+        $user = User::first();
+
+        $token = JWTAuth::fromUser($user);
+
+        $job_offers_with_users = JobOffer::with('users')->get();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->get('/api/user/job_offer/');
+
+        $response->assertOk();
+
+        $response->assertJsonStructure(['job_offers_with_users', 'status']);
+    }
+
+    /** @test */
+    public function test_create_apply_to_job_offer()
+    {
+        $this->withoutExceptionHandling();
+
+        DefaultDataTest::data_seed();
+
+        $user = User::first();
+
+        $token = JWTAuth::fromUser($user);
+
+        $jobs_offers = JobOffer::where('state', 'activo')->get();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->get('/api/user/job_offer/create');
+
+        $response->assertOk();
+
+        $response->assertJsonStructure(['jobs_offers', 'status']);
+    }
+
+    /** @test */
+    public function test_apply_to_job_offer()
+    {
+        $this->withoutExceptionHandling();
+
+        DefaultDataTest::data_seed();
+
+        $user = User::latest('id')->first();
+
+        $token = JWTAuth::fromUser($user);
+
+        $active_job=JobOffer::first();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->post('/api/user/job_offer/apply', [
+            'joboffer' => $active_job->id
+        ]);
+
+        $response->assertOk();
+
+        $response->assertJsonStructure(['message', 'status']);
     }
 }

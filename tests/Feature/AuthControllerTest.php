@@ -44,7 +44,7 @@ class AuthControllerTest extends TestCase
             'email' => $email
         ]);
 
-        $this->assertDatabaseCount('users', 2);
+        $this->assertDatabaseCount('users', 3);
     }
 
     /** @test */
