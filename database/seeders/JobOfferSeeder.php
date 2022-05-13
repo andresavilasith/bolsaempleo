@@ -19,7 +19,7 @@ class JobOfferSeeder extends Seeder
         $user=User::first();
         $user2=User::latest('id')->first();
         
-        JobOffer::factory()->times(200)->create();
+        JobOffer::factory()->times(2000)->create();
 
 
         $jobs_offers=JobOffer::where('state','activo')->get();
